@@ -1,0 +1,7 @@
+{
+	"files.associations": {
+		"*.md": "markdown",
+		"libft.h": "c",
+		"ft_printf.h": "c"
+	}
+}
