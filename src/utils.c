@@ -6,50 +6,56 @@
 /*   By: jcaetano <jcaetano@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 10:10:15 by jcaetano          #+#    #+#             */
-/*   Updated: 2022/01/07 12:04:28 by jcaetano         ###   ########.fr       */
+/*   Updated: 2022/01/10 08:04:09 by jcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-static size_t	ft_nb_count(int nb)
+int	ft_atoi(const char *str)
 {
-	size_t	size;
+	int	res;
 
-	size = 1;
-	nb /= 10;
-	while (nb)
-	{
-		nb /= 10;
-		size++;
-	}
-	return (size);
+	res = 0;
+	while (*str >= '0' && *str <= '9')
+		res = (res * 10) + (*str++ - '0');
+	return (res);
 }
 
-static char	*ft_convert_nbr(char *s, size_t size, unsigned int nb)
+char	*ft_itoa(int n)
 {
+	char			*s;
+	size_t			size;
+	int				n_2;
+
+	n_2 = n;
+	size = 1;
+	n_2 /= 10;
+	while (n_2)
+	{
+		n_2 /= 10;
+		size++;
+	}
+	s = (char *)malloc(sizeof(char) * size + 1);
+	if (!s)
+		return (NULL);
 	s[size] = '\0';
 	while (size--)
 	{
-		s[size] = (nb % 10) + '0';
-		nb /= 10;
+		s[size] = (n % 10) + '0';
+		n /= 10;
 	}
 	return (s);
 }
 
-void	ft_put_pid(int n)
+void	ft_put_pid(int pid)
 {
-	char			*s;
-	size_t			size;
-	unsigned int	negative;
+	char	*str;
 
-	size = ft_nb_count(n);
-	s = (char *)malloc(sizeof(char) * size + 1);
-	if (!s)
-		return ;
-	s = ft_convert_nbr(s, size, (unsigned int)n);
-	write(1, s, size);
-	free(s);
+	str = ft_itoa(pid);
+	write(1, str, ft_strlen(str));
+	write(1, "\n", 2);
+	free(str);
 }
 
 size_t	ft_strlen(const char *str)
