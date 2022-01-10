@@ -6,7 +6,7 @@
 #    By: jcaetano <jcaetano@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/05 06:17:04 by jcaetano          #+#    #+#              #
-#    Updated: 2022/01/10 08:23:17 by jcaetano         ###   ########.fr        #
+#    Updated: 2022/01/10 09:39:15 by jcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,10 +21,10 @@ OBJS	=	$(addprefix $(OBJ)/,$(SRCS:.c=.o))
 
 # COMANDS
 GCC		=	gcc
-CFLAGS	=	-g
+CFLAGS	=	-g $(WFLAGS) $(SAN)
 WFLAGS	=	-Wall -Wextra -Werror
-INCS	=	-I $(INC)
 SAN		=	-g3 -fsanitize=address
+INCS	=	-I $(INC)
 
 $(OBJ)/%.o:	$(SRC)/%.c
 			@echo "Compilando $<"

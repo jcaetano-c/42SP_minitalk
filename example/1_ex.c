@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   01_ex.c                                            :+:      :+:    :+:   */
+/*   1_ex.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcaetano <jcaetano@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 07:04:11 by jcaetano          #+#    #+#             */
-/*   Updated: 2022/01/05 20:50:41 by jcaetano         ###   ########.fr       */
+/*   Updated: 2022/01/10 12:31:14 by jcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	main(void)
 
 	signal(SIGTERM, handle_signal);
 	signal(SIGINT, handle_signal);
-	signal(42, handle_signal);
+	signal(SIGUSR1, handle_signal);
 	pid = getpid();
 	printf("PID = %d\n", pid);
 	while (1)
