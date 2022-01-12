@@ -6,7 +6,7 @@
 #    By: jcaetano <jcaetano@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/05 06:17:04 by jcaetano          #+#    #+#              #
-#    Updated: 2022/01/10 09:39:15 by jcaetano         ###   ########.fr        #
+#    Updated: 2022/01/12 15:41:17 by jcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,6 +48,7 @@ clean:
 
 fclean:		clean
 			@rm -fr	server
+			@rm -fr	client
 
 re:			fclean all
 
