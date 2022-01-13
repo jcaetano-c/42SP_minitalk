@@ -6,7 +6,7 @@
 /*   By: jcaetano <jcaetano@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 10:07:42 by jcaetano          #+#    #+#             */
-/*   Updated: 2022/01/12 15:41:39 by jcaetano         ###   ########.fr       */
+/*   Updated: 2022/01/13 04:02:52 by jcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static void	send_signals(char *str, int pid)
 				else
 					kill(pid, SIGUSR1);
 				g_status = 0;
-				usleep(4000);
+				usleep(0.09 * 1000000);
 				++shift;
 			}
 			++i;
@@ -68,7 +68,7 @@ static void	send_signals(char *str, int pid)
 static void	handler_sigusr(int signum)
 {
 	g_status = 1;
-	signum = signum;
+	signum = (int)signum;
 }
 
 static void	print_error(void)

@@ -6,7 +6,7 @@
 /*   By: jcaetano <jcaetano@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 10:07:42 by jcaetano          #+#    #+#             */
-/*   Updated: 2022/01/12 15:25:57 by jcaetano         ###   ########.fr       */
+/*   Updated: 2022/01/13 03:46:10 by jcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ int	main(void)
 
 static void	handler_sigusr(int signum, siginfo_t *info, void *context)
 {
-	static char	c = 255;
+	static int	c = 255;
 	static int	bits = 0;
 
-	context = context;
+	context = (void *)context;
 	if (signum == SIGUSR2)
 		c = c | (128 >> bits);
 	else if (signum == SIGUSR1)
