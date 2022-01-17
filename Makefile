@@ -5,51 +5,43 @@
 #                                                     +:+ +:+         +:+      #
 #    By: jcaetano <jcaetano@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/01/05 06:17:04 by jcaetano          #+#    #+#              #
-#    Updated: 2022/01/12 15:41:17 by jcaetano         ###   ########.fr        #
+#    Created: 2022/01/14 15:26:28 by jcaetano          #+#    #+#              #
+#    Updated: 2022/01/14 15:32:42 by jcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	=	minitalk
+NAME = minitalk
 
-# FILES AND DIRECTORYS
-INC		=	./include
-SRC		=	./src
-SRCS	=	utils.c
-OBJ		=	./obj
-OBJS	=	$(addprefix $(OBJ)/,$(SRCS:.c=.o))
+SERVER = server
+SOURCE_S = ./src/server.c
 
-# COMANDS
-GCC		=	gcc
-CFLAGS	=	-g $(WFLAGS) $(SAN)
+CLIENT = client
+SOURCE_C = ./src/client.c
+
+SOURCE_U = ./src/utils.c
+
+INC = ./include/
+
+CC		=	gcc $(CFLAGS)
+CFLAGS	=	-g3 $(WFLAGS) $(SAN)
 WFLAGS	=	-Wall -Wextra -Werror
-SAN		=	-g3 -fsanitize=address
-INCS	=	-I $(INC)
+SAN		=	-fsanitize=address
 
-$(OBJ)/%.o:	$(SRC)/%.c
-			@echo "Compilando $<"
-			mkdir -p $(@D)
-			$(CC) $(CFLAGS) $(INCS) -c $< -o $@
 
-$(NAME):	$(OBJS)
+all: $(NAME)
 
-all:		$(NAME) server client
+$(NAME): $(SERVER) $(CLIENT)
 
-server:
-			@echo "Compilando server"
-			$(CC) $(CFLAGS) $(SRC)/server.c $(OBJS) $(INCS) -o server
+$(CLIENT): $(SOURCE_C) $(SOURCE_U) $(FT_PRINTF)
+	$(CC) $(FLAGS) -I$(INC) $^ -o $@
 
-client:
-			@echo "Compilando client"
-			$(CC) $(CFLAGS) $(SRC)/client.c $(OBJS) $(INCS) -o client
+$(SERVER): $(SOURCE_S) $(SOURCE_U) $(FT_PRINTF)
+	$(CC) $(FLAGS) -I$(INC) $^ -o $@
 
 clean:
-			@rm -fr ./obj
 
-fclean:		clean
-			@rm -fr	server
-			@rm -fr	client
+fclean: clean
+	rm -f $(SERVER)
+	rm -f $(CLIENT)
 
-re:			fclean all
-
-.PHONY:		all bonus fsan clean fclean re server client
+re: fclean all

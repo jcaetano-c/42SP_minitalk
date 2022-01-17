@@ -1,0 +1,14 @@
+{
+	"files.associations": {
+		"*.md": "markdown",
+		"types.h": "c",
+		"libft.h": "c",
+		"minitalk.h": "c",
+		"unistd.h": "c",
+		"signal.h": "c",
+		"*.tcc": "c",
+		"stdlib.h": "c",
+		"stdio.h": "c"
+	},
+	"C_Cpp.errorSquiggles": "Disabled"
+}
